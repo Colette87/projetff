@@ -9,17 +9,7 @@
 <table>
 <?php
 
-if (isset( $_SERVER["WINDIR"])){
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "gestionbancaire";
-}else{
-    $servername = "172.17.0.2";
-    $username = "root";
-    $password = "";
-    $dbname = "colette";
-}
+include 'parametre.php';
 
 
 
@@ -28,11 +18,6 @@ if(isset($_GET['idcli'])) {
 }else{
     $idc=1;
 }
-
-echo 'Mon nom d\'utilisateur est ' . $_ENV["USER"] . '!';
-
-
-print_r($_ENV);
 
 
 if(isset($idc)) {
@@ -68,7 +53,8 @@ if(isset($idc)) {
 } else {
     echo "utilisation incorrecte";
 }
-
+echo "<br>";
+echo '<a href= "compte.php" > Ajouter un compte </a>' . "<br>";
 ?>
 </table>
 </body>

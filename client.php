@@ -5,26 +5,11 @@
     <title>title</title>
 </head>
 <br>
-<body>
-
+<a>
+    <table>
 <?php
-echo "test devops" . "<br>";
-echo "test git" . "<br>";
 
-
-if (isset( $_SERVER["WINDIR"])){
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "gestionbancaire";
-
-}else{
-
-    $servername = "172.17.0.2";
-    $username = "root";
-    $password = "";
-    $dbname = "colette";
-}
+include 'parametre.php';
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -40,11 +25,17 @@ if ($result->num_rows > 0) {
 // output data of each row
 while($row = $result->fetch_assoc()) {
 echo "id: " . $row["idcli"]. " - Name: " . $row["nom"]. " " . $row["prenom"]. "<br>";
+echo '<a href=compte.php?user=idcli" > Afficher compte </a>' . "<br>";
+echo '<a href= "compte.php" > Ajouter un compte </a>' . "<br>";
 }
 } else {
 echo "0 results";
 }
 $conn->close();
+
 ?>
+        <br><a href="index.php" > Retour </a><br>
+
+</table>
 </body>
 </html>
