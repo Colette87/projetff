@@ -24,6 +24,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 // output data of each row
 while($row = $result->fetch_assoc()) {
+
 echo "id: " . $row["idcli"] . " - Name: " . $row["nom"]. " " . $row["prenom"]. "<br>";
 echo '<a href="compte.php?idcli=' . $row["idcli"] . '" > Afficher compte </a>' . "<br>";
 echo '<a href="addcompte.php?idcli=' . $row["idcli"] . '" > Ajouter un compte </a>' . "<br>";
