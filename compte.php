@@ -11,32 +11,19 @@
 
 include 'parametre.php';
 
-
-
 if(isset($_GET['idcli'])) {
-    $idc=$_GET['idcli'];
-}else{
-    $idc=1;
-}
-
-
-if(isset($idc)) {
-
-
 
 // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
-    $sql = "SELECT idcli, numcpte, solde FROM compte WHERE idcli=" . $idc;
+
+    $sql = "SELECT idcli, numcpte, solde FROM compte WHERE idcli=" . $_GET['idcli'];
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         echo"<tr>";
-        echo"<th>" . "Identification Client" . "</th><th> " . "Numéro Compte" . "</th><th>" . "Solde" . "</th>";
+        echo "<th>Identification <br> Client</th><th> Numéro <br> Compte</th><th>Solde</th>";
         echo"</tr>";
 
 // output data of each row
@@ -44,6 +31,8 @@ if(isset($idc)) {
 
             echo('<tr>');
             echo "<td>" . $row["idcli"] . "</td><td> " . $row["numcpte"] . "</td><td>" . $row["solde"] . "<td>";
+            echo '<a href="transaction.php' . $row["idcli"] . '" > Historique transaction </a>' . "<br>";
+            echo '<a href="addtransaction.php' . $row["idcli"] . '" > Ajout transaction </a>' . "<br>";
         }
         echo("</tr>");
     } else {
@@ -54,7 +43,7 @@ if(isset($idc)) {
     echo "utilisation incorrecte";
 }
 echo "<br>";
-echo '<a href= "compte.php" > Ajouter un compte </a>' . "<br>";
+
 ?>
 </table>
 </body>

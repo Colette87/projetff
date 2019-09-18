@@ -16,15 +16,16 @@ echo $_POST["dn"]."<br>";
 
 include 'parametre.php';
 
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-$sql= "INSERT INTO `client` (`idcli`, `nom`, `DateNaissance`, `prenom`) VALUES (NULL, 'nom', 'dn', 'prenom')";
+$nom = $_POST['nom'];
+$prenom = $_POST['prenom'];
+$dn = $_POST['dn'];
+$sql= "INSERT INTO client (nom, DateNaissance, prenom) VALUES ('$nom', '$dn', '$prenom')";
 $result = $conn->query($sql);
-
-
 ?>
 
 
